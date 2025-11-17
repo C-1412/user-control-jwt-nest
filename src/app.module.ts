@@ -13,7 +13,7 @@ import { ProductosModule } from './productos/productos.module';
       port: 5432,
       username: 'postgres',
       password: '123',
-      database: 'users_control',
+      database: 'tienda_db',
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -22,7 +22,7 @@ import { ProductosModule } from './productos/productos.module';
     AuthModule,
     TipoProductosModule,
     ProductosModule,
-    
+
   ],
   controllers: [],
   providers: [],
