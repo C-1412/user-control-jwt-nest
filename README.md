@@ -25,6 +25,18 @@ Este proyecto implementa un servicio REST con **NestJS**, **TypeORM** y **JWT**.
 | GET    | `/api/v1/auth/profile`     | Obtener el perfil del usuario autenticado (requiere `Authorization: Bearer <token>`) |
 
 ---
+ AuthController (`/api/v1/tipo-productos`)
+ 
+POST /api/v1/tipo-productos (solo Admin)
+
+GET /api/v1/tipo-productos (Usuarios autenticados)
+
+GET /api/v1/tipo-productos/:id (Usuarios autenticados)
+
+PATCH /api/v1/tipo-productos/:id (solo Admin)
+
+DELETE /api/v1/tipo-productos/:id (solo Admin)
+
 
 ## 🚀 Ejecución
 
