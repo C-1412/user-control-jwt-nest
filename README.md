@@ -1,34 +1,70 @@
-# 📌 API REST - NestJS CRUD + Auth
+🚀 API REST - NestJS CRUD + Auth + Product Management
+Este proyecto implementa un servicio REST completo con NestJS, TypeORM, JWT Authentication y sistema de gestión de productos.
 
-Este proyecto implementa un servicio REST con **NestJS**, **TypeORM** y **JWT**.  
+📋 Tabla de Contenidos
+Características
 
----
+Estructura del Proyecto
 
-## 👤 UsersController (`/api/v1/users`)
+Endpoints
 
-| Método | Endpoint              | Descripción                                |
-|--------|-----------------------|--------------------------------------------|
-| POST   | `/api/v1/users`       | Crear un usuario nuevo                     |
-| GET    | `/api/v1/users`       | Listar todos los usuarios                  |
-| GET    | `/api/v1/users/:id`   | Obtener un usuario por su ID               |
-| PATCH  | `/api/v1/users/:id`   | Actualizar parcialmente un usuario por ID  |
-| DELETE | `/api/v1/users/:id`   | Eliminar un usuario por ID                 |
+Ejecución
 
----
+Ejemplos de Uso
 
-## 🔐 AuthController (`/api/v1/auth`)
+✨ Características
+✅ Autenticación JWT segura
 
-| Método | Endpoint                   | Descripción                                                                 |
-|--------|----------------------------|-----------------------------------------------------------------------------|
-| POST   | `/api/v1/auth/register`    | Registrar un nuevo usuario                                                  |
-| POST   | `/api/v1/auth/login`       | Iniciar sesión (devuelve token JWT)                                         |
-| GET    | `/api/v1/auth/profile`     | Obtener el perfil del usuario autenticado (requiere `Authorization: Bearer <token>`) |
+✅ Autorización por roles (USER, ADMIN)
 
----
+✅ CRUD completo de usuarios, tipos de productos y productos
 
-## 🚀 Ejecución
+✅ Soft Delete para eliminaciones seguras
 
-```bash
+✅ Validación de datos robusta
+
+✅ Base de datos PostgreSQL con TypeORM
+
+✅ Relaciones entre entidades
+
+✅ Documentación completa
+
+🏗️ Estructura del Proyecto
+text
+src/
+├── auth/                 # Autenticación y autorización
+├── users/               # Gestión de usuarios
+├── tipo-productos/      # Categorías de productos
+├── productos/           # Gestión de productos
+└── common/              # Utilidades compartidas
+🔐 AuthController (/api/v1/auth)
+Método	Endpoint	Descripción	Auth Required
+POST	/api/v1/auth/register	Registrar nuevo usuario	❌
+POST	/api/v1/auth/login	Iniciar sesión (retorna JWT)	❌
+GET	/api/v1/auth/profile	Obtener perfil del usuario	✅
+👥 UsersController (/api/v1/users)
+Método	Endpoint	Descripción	Rol Requerido
+POST	/api/v1/users	Crear usuario nuevo	ADMIN
+GET	/api/v1/users	Listar todos los usuarios	ADMIN
+GET	/api/v1/users/:id	Obtener usuario por ID	ADMIN
+PATCH	/api/v1/users/:id	Actualizar usuario	ADMIN
+DELETE	/api/v1/users/:id	Eliminar usuario (soft delete)	ADMIN
+📦 TipoProductosController (/api/v1/tipo-productos)
+Método	Endpoint	Descripción	Rol Requerido
+POST	/api/v1/tipo-productos	Crear tipo de producto	ADMIN
+GET	/api/v1/tipo-productos	Listar todos los tipos	USER
+GET	/api/v1/tipo-productos/:id	Obtener tipo por ID	USER
+PATCH	/api/v1/tipo-productos/:id	Actualizar tipo de producto	ADMIN
+DELETE	/api/v1/tipo-productos/:id	Eliminar tipo (soft delete)	ADMIN
+🛍️ ProductosController (/api/v1/productos)
+Método	Endpoint	Descripción	Rol Requerido
+POST	/api/v1/productos	Crear producto	ADMIN
+GET	/api/v1/productos	Listar todos los productos	USER
+GET	/api/v1/productos/:id	Obtener producto por ID	USER
+PATCH	/api/v1/productos/:id	Actualizar producto	ADMIN
+DELETE	/api/v1/productos/:id	Eliminar producto (soft delete)	ADMIN
+🚀 Ejecución
+bash
 # Instalar dependencias
 npm install
 
@@ -38,3 +74,6 @@ npm run start:dev
 # Compilar y ejecutar en producción
 npm run build
 npm run start:prod
+
+# Ejecutar tests
+npm test
