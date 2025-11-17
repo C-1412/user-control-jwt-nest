@@ -4,27 +4,45 @@ Este proyecto implementa un servicio REST con **NestJS**, **TypeORM** y **JWT**.
 
 ---
 
-## 👤 UsersController (`/api/v1/users`)
+# Endpoints API
 
-| Método | Endpoint              | Descripción                                |
-|--------|-----------------------|--------------------------------------------|
-| POST   | `/api/v1/users`       | Crear un usuario nuevo                     |
-| GET    | `/api/v1/users`       | Listar todos los usuarios                  |
-| GET    | `/api/v1/users/:id`   | Obtener un usuario por su ID               |
-| PATCH  | `/api/v1/users/:id`   | Actualizar parcialmente un usuario por ID  |
-| DELETE | `/api/v1/users/:id`   | Eliminar un usuario por ID                 |
+## 🔐 AuthController
 
----
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST   | `/api/v1/auth/register` | Registrar nuevo usuario |
+| POST   | `/api/v1/auth/login` | Iniciar sesión (retorna JWT) |
+| GET    | `/api/v1/auth/profile` | Obtener perfil del usuario |
 
-## 🔐 AuthController (`/api/v1/auth`)
+## 👥 UsersController
 
-| Método | Endpoint                   | Descripción                                                                 |
-|--------|----------------------------|-----------------------------------------------------------------------------|
-| POST   | `/api/v1/auth/register`    | Registrar un nuevo usuario                                                  |
-| POST   | `/api/v1/auth/login`       | Iniciar sesión (devuelve token JWT)                                         |
-| GET    | `/api/v1/auth/profile`     | Obtener el perfil del usuario autenticado (requiere `Authorization: Bearer <token>`) |
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST   | `/api/v1/users` | Crear usuario nuevo |
+| GET    | `/api/v1/users` | Listar todos los usuarios |
+| GET    | `/api/v1/users/:id` | Obtener usuario por ID |
+| PATCH  | `/api/v1/users/:id` | Actualizar usuario |
+| DELETE | `/api/v1/users/:id` | Eliminar usuario (soft delete) |
 
----
+## 📦 TipoProductosController
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST   | `/api/v1/tipo-productos` | Crear tipo de producto |
+| GET    | `/api/v1/tipo-productos` | Listar todos los tipos |
+| GET    | `/api/v1/tipo-productos/:id` | Obtener tipo por ID |
+| PATCH  | `/api/v1/tipo-productos/:id` | Actualizar tipo de producto |
+| DELETE | `/api/v1/tipo-productos/:id` | Eliminar tipo (soft delete) |
+
+## 🛍️ ProductosController
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST   | `/api/v1/productos` | Crear producto |
+| GET    | `/api/v1/productos` | Listar todos los productos |
+| GET    | `/api/v1/productos/:id` | Obtener producto por ID |
+| PATCH  | `/api/v1/productos/:id` | Actualizar producto |
+| DELETE | `/api/v1/productos/:id` | Eliminar producto (soft delete) |
 
 ## 🚀 Ejecución
 
