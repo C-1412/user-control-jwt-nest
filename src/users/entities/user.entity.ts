@@ -3,8 +3,10 @@ import {
   DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 import { Role } from '../../common/enums/rol.enum';
+import { Comment } from './../../comments/entities/comment.entity';
 
 @Entity()
 export class User {
@@ -22,6 +24,9 @@ export class User {
 
   @Column({ type: 'enum', default: Role.USER, enum: Role })
   role: Role;
+
+  @OneToMany(() => Comment, comment => comment.user)
+  comments: Comment[];
 
   @DeleteDateColumn()
   deletedAt: Date;

@@ -1,5 +1,6 @@
-import { Column, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TipoProducto } from '../../tipo-productos/entities/tipo-producto.entity';
+import { Comment } from './../../comments/entities/comment.entity';
 
 @Entity()
 export class Producto {
@@ -23,6 +24,9 @@ export class Producto {
 
   @ManyToOne(() => TipoProducto, (tipoProducto) => tipoProducto.id, { nullable: false })
   tipoProducto: TipoProducto;
+
+  @OneToMany(() => Comment, comment => comment.product)
+  comments: Comment[];
 
   @DeleteDateColumn()
   deletedAt: Date;
