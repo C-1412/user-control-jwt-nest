@@ -47,13 +47,17 @@ Este proyecto implementa un servicio REST con **NestJS**, **TypeORM** y **JWT**.
 
 ## 💬 CommentsController
 
-| Método | Endpoint | Descripción | Permisos |
-|--------|----------|-------------|----------|
-| POST | `/api/v1/comments` | Crear comentario (1 por usuario por producto) | USER |
-| PATCH | `/api/v1/comments/:id` | Actualizar comentario propio | USER |
-| DELETE | `/api/v1/comments/:id` | Eliminar comentario (propio o admin) | USER o ADMIN |
-| GET | `/api/v1/comments/product/:productId` | Ver todos los comentarios de un producto | ADMIN |
-| GET | `/api/v1/comments/user/:userId` | Ver todos los comentarios de un usuario | ADMIN |
+Para Usuarios Registrados (Role.USER)
+
+POST    /api/v1/comments          # Crear comentario (1 por usuario por producto)
+PATCH   /api/v1/comments/:id      # Actualizar comentario propio
+DELETE  /api/v1/comments/:id      # Eliminar comentario propio
+
+Para Administradores (Role.ADMIN)
+
+GET     /api/v1/comments/product/:productId    # Ver todos los comentarios de un producto
+GET     /api/v1/comments/user/:userId          # Ver todos los comentarios de un usuario
+DELETE  /api/v1/comments/:id                   # Eliminar cualquier comentario
 
 ## 🚀 Ejecución
 
