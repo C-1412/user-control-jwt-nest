@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Producto } from '../../productos/entities/producto.entity';
 
@@ -11,9 +11,11 @@ export class Comment {
   content: string;
 
   @ManyToOne(() => User, user => user.comments, { nullable: false })
+  @JoinColumn({ name: 'userId' })
   user: User;
 
   @ManyToOne(() => Producto, product => product.comments, { nullable: false })
+  @JoinColumn({ name: 'productId' })
   product: Producto;
 
   @CreateDateColumn()
@@ -23,5 +25,5 @@ export class Comment {
   updatedAt: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date; // For soft delete
+  deletedAt: Date;
 }
