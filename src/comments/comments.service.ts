@@ -71,7 +71,6 @@ export class CommentsService {
         return this.commentRepository.save(comment);
     }
 
-    // CORRECCIÓN: Cambiar el tipo de userRole a string
     async remove(id: number, userId: number, userRole: string): Promise<void> {
         const comment = await this.commentRepository.findOne({
             where: { id },
@@ -82,7 +81,6 @@ export class CommentsService {
             throw new NotFoundException('Comment not found');
         }
 
-        // CORRECCIÓN: Comparar con string en lugar de enum Role
         if (userRole !== Role.ADMIN && comment.user.id !== userId) {
             throw new ForbiddenException('You can only delete your own comments');
         }

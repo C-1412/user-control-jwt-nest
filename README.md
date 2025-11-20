@@ -14,6 +14,7 @@ Este proyecto implementa un servicio REST con **NestJS**, **TypeORM** y **JWT**.
 | POST   | `/api/v1/auth/login` | Iniciar sesión (retorna JWT) |
 | GET    | `/api/v1/auth/profile` | Obtener perfil del usuario |
 
+
 ## 👥 UsersController
 
 | Método | Endpoint | Descripción |
@@ -23,6 +24,8 @@ Este proyecto implementa un servicio REST con **NestJS**, **TypeORM** y **JWT**.
 | GET    | `/api/v1/users/:id` | Obtener usuario por ID |
 | PATCH  | `/api/v1/users/:id` | Actualizar usuario |
 | DELETE | `/api/v1/users/:id` | Eliminar usuario (soft delete) |
+
+
 
 ## 📦 TipoProductosController
 
@@ -58,6 +61,156 @@ Para Administradores (Role.ADMIN)
 GET     /api/v1/comments/product/:productId    # Ver todos los comentarios de un producto
 GET     /api/v1/comments/user/:userId          # Ver todos los comentarios de un usuario
 DELETE  /api/v1/comments/:id                   # Eliminar cualquier comentario
+
+🔐 Autenticación
+Login
+POST /api/v1/auth/login
+
+json
+// Request
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+// Response
+{
+  "token": "eyJhbGci...",
+  "email": "user@example.com",
+  "role": "user",
+  "name": "Juan Perez",
+  "id": 1
+}
+Register
+POST /api/v1/auth/register
+
+json
+// Request
+{
+  "name": "Juan Perez",
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+// Response
+{
+  "name": "Juan Perez",
+  "email": "user@example.com"
+}
+📦 Productos
+Crear Producto (ADMIN)
+POST /api/v1/productos
+
+json
+// Request
+{
+  "nombre": "Smartphone",
+  "descripcion": "Teléfono inteligente",
+  "precio": 699.99,
+  "tipoProductoId": 1
+}
+
+// Response
+{
+  "id": 1,
+  "nombre": "Smartphone",
+  "descripcion": "Teléfono inteligente",
+  "precio": 699.99,
+  "tipoProducto": {
+    "id": 1,
+    "nombre": "Electrónicos"
+  }
+}
+Listar Productos (USER+)
+GET /api/v1/productos
+
+json
+// Response
+[
+  {
+    "id": 1,
+    "nombre": "Smartphone",
+    "descripcion": "Teléfono inteligente",
+    "precio": 699.99,
+    "tipoProducto": {
+      "id": 1,
+      "nombre": "Electrónicos"
+    }
+  }
+]
+💬 Comentarios
+Crear Comentario (USER)
+POST /api/v1/comments
+
+json
+// Request
+{
+  "content": "Excelente producto!",
+  "productId": 1
+}
+
+// Response
+{
+  "id": 1,
+  "content": "Excelente producto!",
+  "user": {
+    "id": 1,
+    "name": "Juan Perez"
+  },
+  "createdAt": "2023-10-05T12:00:00.000Z"
+}
+Ver Comentarios por Producto (ADMIN)
+GET /api/v1/comments/product/1
+
+json
+// Response
+[
+  {
+    "id": 1,
+    "content": "Excelente producto!",
+    "user": {
+      "id": 1,
+      "name": "Juan Perez"
+    },
+    "createdAt": "2023-10-05T12:00:00.000Z"
+  }
+]
+👥 Usuarios (ADMIN only)
+Crear Usuario
+POST /api/v1/users
+
+json
+// Request
+{
+  "name": "Maria Garcia",
+  "email": "maria@example.com",
+  "password": "password123"
+}
+
+// Response
+{
+  "id": 2,
+  "name": "Maria Garcia",
+  "email": "maria@example.com",
+  "role": "user"
+}
+📋 Categorías
+Crear Categoría (ADMIN)
+POST /api/v1/tipo-productos
+
+json
+// Request
+{
+  "nombre": "Electrónicos",
+  "descripcion": "Dispositivos electrónicos"
+}
+
+// Response
+{
+  "id": 1,
+  "nombre": "Electrónicos",
+  "descripcion": "Dispositivos electrónicos"
+}
 
 ## 🚀 Ejecución
 

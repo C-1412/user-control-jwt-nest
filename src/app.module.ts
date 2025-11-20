@@ -5,18 +5,13 @@ import { AuthModule } from './auth/auth.module';
 import { TipoProductosModule } from './tipo-productos/tipo-productos.module';
 import { ProductosModule } from './productos/productos.module';
 import { CommentsModule } from './comments/comments.module';
+import { AppDataSource } from './ormconfig';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '123',
-      database: 'tienda_db',
+      ...AppDataSource.options,
       autoLoadEntities: true,
-      synchronize: true,
     }),
     
     UsersModule,
