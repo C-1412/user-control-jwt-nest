@@ -6,12 +6,17 @@ import { TipoProductosModule } from './tipo-productos/tipo-productos.module';
 import { ProductosModule } from './productos/productos.module';
 import { CommentsModule } from './comments/comments.module';
 import { AppDataSource } from './ormconfig';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       ...AppDataSource.options,
       autoLoadEntities: true,
+    }),
+
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
     
     UsersModule,

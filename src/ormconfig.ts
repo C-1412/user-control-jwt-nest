@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
   username: 'postgres',
   password: '123',
   database: 'tienda_db',
-  entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['dist/migrations/*{.ts,.js}'],
-  synchronize: false,
+  entities: ['src/**/*.entity{.ts,.js}'],
+  migrations: ['src/migrations/*{.ts,.js}'],
+  synchronize: true,
 });
